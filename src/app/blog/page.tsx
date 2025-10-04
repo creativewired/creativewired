@@ -15,7 +15,7 @@ export default async function BlogPage() {
 
   // Fetch all published posts
   const { data: posts, error } = await supabase
-    .from('blog_posts')
+    .from('posts')
     .select('*')
     .eq('status', 'published')
     .order('published_at', { ascending: false })

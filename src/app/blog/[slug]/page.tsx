@@ -16,7 +16,7 @@ import Image from '@tiptap/extension-image'
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const supabase = await createClient()
   const { data: post } = await supabase
-    .from('blog_posts')
+    .from('posts')
     .select('*')
     .eq('slug', params.slug)
     .eq('status', 'published')
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   const supabase = await createClient()
   const { data: post, error } = await supabase
-    .from('blog_posts')
+    .from('posts')
     .select('*')
     .eq('slug', params.slug)
     .eq('status', 'published')
@@ -61,7 +61,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   }
 
   const { data: relatedPosts } = await supabase
-    .from('blog_posts')
+    .from('posts')
     .select('*')
     .eq('category', post.category)
     .eq('status', 'published')

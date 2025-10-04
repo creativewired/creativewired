@@ -21,7 +21,7 @@ export default function PostsPage() {
   async function fetchPosts() {
     try {
       const { data, error } = await supabase
-        .from('blog_posts')
+        .from('posts')
         .select('*')
         .order('created_at', { ascending: false })
 
@@ -41,7 +41,7 @@ export default function PostsPage() {
 
     try {
       const { error } = await supabase
-        .from('blog_posts')
+        .from('posts')
         .delete()
         .eq('id', postId)
 

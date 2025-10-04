@@ -41,7 +41,7 @@ export default function EditPostPage() {
     async function fetchPost() {
       try {
         const { data, error } = await supabase
-          .from('blog_posts')
+          .from('posts')
           .select('*')
           .eq('id', params.id)
           .single()
@@ -92,7 +92,7 @@ export default function EditPostPage() {
         published_at: status === 'published' ? new Date().toISOString() : null,
       }
       const { error } = await supabase
-        .from('blog_posts')
+        .from('posts')
         .update(postData)
         .eq('id', params.id)
       if (error) throw error
@@ -109,7 +109,7 @@ export default function EditPostPage() {
   const handleDelete = async () => {
     if (!confirm('Delete this post? This action cannot be undone.')) return
     try {
-      const { error } = await supabase.from('blog_posts').delete().eq('id', params.id)
+      const { error } = await supabase.from('posts').delete().eq('id', params.id)
       if (error) throw error
       alert('Post deleted successfully!')
       router.push('/admin/posts')

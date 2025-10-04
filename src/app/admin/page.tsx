@@ -7,22 +7,22 @@ export default async function AdminDashboard() {
 
   // Fetch statistics
   const { count: totalPosts } = await supabase
-    .from('blog_posts')
+    .from('posts')
     .select('*', { count: 'exact', head: true })
 
   const { count: publishedPosts } = await supabase
-    .from('blog_posts')
+    .from('posts')
     .select('*', { count: 'exact', head: true })
     .eq('status', 'published')
 
   const { count: draftPosts } = await supabase
-    .from('blog_posts')
+    .from('posts')
     .select('*', { count: 'exact', head: true })
     .eq('status', 'draft')
 
   // Fetch recent posts
   const { data: recentPosts } = await supabase
-    .from('blog_posts')
+    .from('posts')
     .select('*')
     .order('created_at', { ascending: false })
     .limit(5)
