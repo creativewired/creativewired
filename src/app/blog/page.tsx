@@ -246,9 +246,7 @@ export default async function BlogPage() {
               ) : (
                 <div className="text-center py-20">
                   <p className="text-gray-500 text-lg">No blog posts found. Check back soon!</p>
-                  <Link href="/admin/posts/new" className="text-yellow-600 hover:text-yellow-700 font-medium mt-4 inline-block">
-                    Create your first post →
-                  </Link>
+                  
                 </div>
               )}
             </div>

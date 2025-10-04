@@ -11,31 +11,28 @@ import ImageUpload from '@/components/ImageUpload'
 import FAQManager from '@/components/FAQManager'
 import { calculateReadingTime } from '@/lib/utils/toc'
 
-
-
 export default function NewPostPage() {
   const router = useRouter()
   const supabase = createClient()
   
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
-  title: '',
-  slug: '',
-  excerpt: '',
-  content: '',
-  featured_image: '',
-  author_name: '',
-  author_email: '',
-  category: '',
-  tags: [] as string[],
-  status: 'draft',
-  meta_title: '',
-  meta_description: '',
-  faq_items: [] as Array<{ question: string; answer: string }>,
-  auto_generate_toc: true,
-  schema_type: 'Article' as 'Article' | 'BlogPosting' | 'NewsArticle',
-})
-
+    title: '',
+    slug: '',
+    excerpt: '',
+    content: '',
+    featured_image: '',
+    author_name: '',
+    author_email: '',
+    category: '',
+    tags: [] as string[],
+    status: 'draft',
+    meta_title: '',
+    meta_description: '',
+    faq_items: [] as Array<{ question: string; answer: string }>,
+    auto_generate_toc: true,
+    schema_type: 'Article' as 'Article' | 'BlogPosting' | 'NewsArticle',
+  })
 
   const handleTitleChange = (title: string) => {
     const slug = slugify(title, { lower: true, strict: true })
@@ -43,36 +40,43 @@ export default function NewPostPage() {
   }
 
   const handleSubmit = async (status: 'draft' | 'published') => {
-  setLoading(true)
+    setLoading(true)
 
-  try {
-    // Calculate reading time
-    const readingTime = calculateReadingTime(formData.content)
+    try {
+      // Ensure content is a string
+      let contentString = formData.content
+      if (typeof contentString !== 'string') {
+        contentString = String(contentString || '')
+      }
 
-    const postData = {
-      ...formData,
-      status,
-      reading_time: readingTime,
-      published_at: status === 'published' ? new Date().toISOString() : null,
+      // Calculate reading time
+      const readingTime = calculateReadingTime(contentString)
+
+      const postData = {
+        ...formData,
+        content: contentString,
+        status,
+        reading_time: readingTime,
+        published_at: status === 'published' ? new Date().toISOString() : null,
+      }
+
+      const { data, error } = await supabase
+        .from('posts')
+        .insert([postData])
+        .select()
+        .single()
+
+      if (error) throw error
+
+      alert(`Post ${status === 'published' ? 'published' : 'saved as draft'} successfully!`)
+      router.push('/admin/posts')
+    } catch (error) {
+      console.error('Error saving post:', error)
+      alert('Error saving post. Please try again.')
+    } finally {
+      setLoading(false)
     }
-
-    const { data, error } = await supabase
-      .from('blog_posts')
-      .insert([postData])
-      .select()
-      .single()
-
-    if (error) throw error
-
-    alert(`Post ${status === 'published' ? 'published' : 'saved as draft'} successfully!`)
-    router.push('/admin/posts')
-  } catch (error) {
-    console.error('Error saving post:', error)
-    alert('Error saving post. Please try again.')
-  } finally {
-    setLoading(false)
   }
-}
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
@@ -172,18 +176,16 @@ export default function NewPostPage() {
           />
         </div>
 
-       {/* Featured Image Upload */}
-<div>
-  <label className="block text-sm font-medium text-gray-700 mb-2">
-    Featured Image
-  </label>
-  <ImageUpload
-    onImageUploaded={(url) => setFormData({ ...formData, featured_image: url })}
-    currentImage={formData.featured_image}
-  />
-</div>
-
-
+        {/* Featured Image Upload */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Featured Image
+          </label>
+          <ImageUpload
+            onImageUploaded={(url) => setFormData({ ...formData, featured_image: url })}
+            currentImage={formData.featured_image}
+          />
+        </div>
 
         {/* Author Info */}
         <div className="grid md:grid-cols-2 gap-6">
@@ -250,52 +252,51 @@ export default function NewPostPage() {
           />
         </div>
 
-      {/* Advanced SEO */}
-<div className="border-t pt-6 space-y-6">
-  <h3 className="text-lg font-semibold text-black">Advanced SEO</h3>
+        {/* Advanced SEO */}
+        <div className="border-t pt-6 space-y-6">
+          <h3 className="text-lg font-semibold text-black">Advanced SEO</h3>
 
-  {/* Schema Type */}
-  <div>
-    <label className="block text-sm font-medium text-gray-700 mb-2">
-      Schema Type
-    </label>
-    <select
-      value={formData.schema_type}
-      onChange={(e) => setFormData({ ...formData, schema_type: e.target.value as any })}
-      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
-    >
-      <option value="Article">Article (Default)</option>
-      <option value="BlogPosting">Blog Posting</option>
-      <option value="NewsArticle">News Article</option>
-    </select>
-    <p className="text-sm text-gray-500 mt-1">
-      Structured data type for search engines.
-    </p>
-  </div>
+          {/* Schema Type */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Schema Type
+            </label>
+            <select
+              value={formData.schema_type}
+              onChange={(e) => setFormData({ ...formData, schema_type: e.target.value as any })}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            >
+              <option value="Article">Article (Default)</option>
+              <option value="BlogPosting">Blog Posting</option>
+              <option value="NewsArticle">News Article</option>
+            </select>
+            <p className="text-sm text-gray-500 mt-1">
+              Structured data type for search engines.
+            </p>
+          </div>
 
-  {/* TOC Toggle */}
-  <div className="flex items-center space-x-3">
-    <input
-      type="checkbox"
-      id="auto-toc"
-      checked={formData.auto_generate_toc}
-      onChange={(e) => setFormData({ ...formData, auto_generate_toc: e.target.checked })}
-      className="w-4 h-4 text-yellow-600 rounded focus:ring-yellow-500"
-    />
-    <label htmlFor="auto-toc" className="text-sm font-medium text-gray-700">
-      Auto-generate Table of Contents from headings (H2-H3)
-    </label>
-  </div>
-</div>
+          {/* TOC Toggle */}
+          <div className="flex items-center space-x-3">
+            <input
+              type="checkbox"
+              id="auto-toc"
+              checked={formData.auto_generate_toc}
+              onChange={(e) => setFormData({ ...formData, auto_generate_toc: e.target.checked })}
+              className="w-4 h-4 text-yellow-600 rounded focus:ring-yellow-500"
+            />
+            <label htmlFor="auto-toc" className="text-sm font-medium text-gray-700">
+              Auto-generate Table of Contents from headings (H2-H3)
+            </label>
+          </div>
+        </div>
 
-{/* FAQ Section */}
-<div className="border-t pt-6">
-  <FAQManager
-    faqs={formData.faq_items}
-    onChange={(faqs) => setFormData({ ...formData, faq_items: faqs })}
-  />
-</div>
-
+        {/* FAQ Section */}
+        <div className="border-t pt-6">
+          <FAQManager
+            faqs={formData.faq_items}
+            onChange={(faqs) => setFormData({ ...formData, faq_items: faqs })}
+          />
+        </div>
 
         <div className="border-t pt-6 space-y-6">
           <h3 className="text-lg font-semibold text-black">SEO Settings</h3>
