@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation'
 import { LayoutDashboard, FileText, Mail, Settings, LogOut } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
-export const revalidate = 0
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
