@@ -1,9 +1,8 @@
+export const dynamic = 'force-dynamic'
 import { createClient } from '@/lib/supabase/server'
 import { format } from 'date-fns'
 import { Mail, Phone, Building, Calendar, Download } from 'lucide-react'
 import Link from 'next/link'
-export const dynamic = 'force-dynamic'
-
 
 export default async function ContactsPage() {
   const supabase = await createClient()

@@ -19,10 +19,6 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   serverExternalPackages: ['@supabase/supabase-js', '@supabase/auth-js'],
-  // Skip static optimization for these paths
-  experimental: {
-    dynamicIO: true,
-  },
 }
 
 module.exports = nextConfig

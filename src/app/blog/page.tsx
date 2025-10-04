@@ -1,11 +1,10 @@
+export const dynamic = 'force-dynamic'
 import { ArrowRight, Calendar, User, Tag, Search, Filter, Clock, Eye, MessageCircle, Lightbulb } from 'lucide-react'
 import Link from 'next/link'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { createClient } from '@/lib/supabase/server'
 import { format } from 'date-fns'
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
 
 
 export const metadata = {

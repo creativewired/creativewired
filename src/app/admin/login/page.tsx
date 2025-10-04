@@ -1,12 +1,12 @@
 'use client'
+export const dynamic = 'force-dynamic'
+
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Mail, Lock, LogIn, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
-export const dynamic = 'force-dynamic'
-
 
 export default function AdminLoginPage() {
   const router = useRouter()
