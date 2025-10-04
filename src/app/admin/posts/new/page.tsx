@@ -11,10 +11,7 @@ import ImageUpload from '@/components/ImageUpload'
 import FAQManager from '@/components/FAQManager'
 import { calculateReadingTime } from '@/lib/utils/toc'
 
-export const dynamic = 'force-dynamic'
-
 export default function NewPostPage() {
-
   const router = useRouter()
   const supabase = createClient()
   
@@ -46,22 +43,44 @@ export default function NewPostPage() {
     setLoading(true)
 
     try {
-      // Ensure content is a string
-      let contentString = formData.content
-      if (typeof contentString !== 'string') {
-        contentString = String(contentString || '')
+      // Extract HTML from content (could be string or object with html property)
+      let contentString = ''
+      if (typeof formData.content === 'string') {
+        contentString = formData.content
+      } else if (formData.content && typeof formData.content === 'object' && 'html' in formData.content) {
+        contentString = (formData.content as any).html
+      }
+      
+      if (!contentString || contentString === '<p></p>') {
+        alert('Please enter some content for your post')
+        setLoading(false)
+        return
       }
 
       // Calculate reading time
       const readingTime = calculateReadingTime(contentString)
 
       const postData = {
-        ...formData,
+        title: formData.title.trim(),
+        slug: formData.slug.trim(),
+        excerpt: formData.excerpt.trim() || null,
         content: contentString,
+        featured_image: formData.featured_image || null,
+        author_name: formData.author_name.trim() || 'Admin',
+        author_email: formData.author_email.trim() || null,
+        category: formData.category || null,
+        tags: formData.tags,
         status,
+        meta_title: formData.meta_title.trim() || formData.title.trim(),
+        meta_description: formData.meta_description.trim() || formData.excerpt.trim(),
+        faq_items: formData.faq_items,
+        auto_generate_toc: formData.auto_generate_toc,
+        schema_type: formData.schema_type,
         reading_time: readingTime,
         published_at: status === 'published' ? new Date().toISOString() : null,
       }
+
+      console.log('Saving post with content length:', contentString.length)
 
       const { data, error } = await supabase
         .from('posts')
@@ -174,7 +193,7 @@ export default function NewPostPage() {
           </label>
           <TipTapEditor
             content={formData.content}
-            onChange={(content) => setFormData({ ...formData, content })}
+            onChange={(payload) => setFormData({ ...formData, content: payload.html })}
             placeholder="Start writing your post..."
           />
         </div>
@@ -232,9 +251,9 @@ export default function NewPostPage() {
             <option value="">Select a category</option>
             <option value="SEO">SEO</option>
             <option value="Web Development">Web Development</option>
+            <option value="Content Marketing">Content Marketing</option>
             <option value="Digital Marketing">Digital Marketing</option>
             <option value="Social Media">Social Media</option>
-            <option value="Content Marketing">Content Marketing</option>
             <option value="PPC Advertising">PPC Advertising</option>
           </select>
         </div>
