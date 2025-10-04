@@ -5,6 +5,7 @@ import Footer from '../../components/Footer'
 import { createClient } from '@/lib/supabase/server'
 import { format } from 'date-fns'
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 
 export const metadata = {
@@ -17,10 +18,15 @@ export default async function BlogPage() {
 
   // Fetch all published posts
   const { data: posts, error } = await supabase
-    .from('posts')
-    .select('*')
-    .eq('status', 'published')
-    .order('published_at', { ascending: false })
+  .from('posts')
+  .select('*')
+  .eq('status', 'published')
+  .order('published_at', { ascending: false })
+
+if (error) {
+  console.error('Error fetching posts:', error)
+  return <div>No posts available</div>
+}
 
   // Get featured post (most recent)
   const featuredPost = posts && posts.length > 0 ? posts[0] : null
