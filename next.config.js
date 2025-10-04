@@ -18,10 +18,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Add this to fix the stack overflow
-  experimental: {
-    serverComponentsExternalPackages: ['@supabase/supabase-js'],
-  },
+  serverExternalPackages: ['@supabase/supabase-js', '@supabase/auth-js'],
 }
 
 module.exports = nextConfig

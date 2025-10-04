@@ -6,6 +6,8 @@ import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
 import { Plus, Edit, Trash2, Eye, Calendar } from 'lucide-react'
 import { format } from 'date-fns'
+export const dynamic = 'force-dynamic'
+
 
 export default function PostsPage() {
   const router = useRouter()

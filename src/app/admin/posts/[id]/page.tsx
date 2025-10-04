@@ -10,6 +10,8 @@ import { calculateReadingTime } from '@/lib/utils/toc'
 import slugify from 'slugify'
 import { ArrowLeft, Save, Eye, Trash2 } from 'lucide-react'
 import Link from 'next/link'
+export const dynamic = 'force-dynamic'
+
 
 export default function EditPostPage() {
   const router = useRouter()
