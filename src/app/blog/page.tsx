@@ -4,6 +4,8 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { createClient } from '@/lib/supabase/server'
 import { format } from 'date-fns'
+export const dynamic = 'force-dynamic'
+
 
 export const metadata = {
   title: 'Digital Marketing Blog - Expert Tips & Insights | Creative Wired',

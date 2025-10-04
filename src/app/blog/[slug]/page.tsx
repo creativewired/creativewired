@@ -12,6 +12,8 @@ import { generateHTML } from '@tiptap/html'
 import StarterKit from '@tiptap/starter-kit'
 import LinkExt from '@tiptap/extension-link'
 import Image from '@tiptap/extension-image'
+export const dynamic = 'force-dynamic'
+
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const supabase = await createClient()
