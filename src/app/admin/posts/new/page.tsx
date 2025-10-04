@@ -10,10 +10,11 @@ import Link from 'next/link'
 import ImageUpload from '@/components/ImageUpload'
 import FAQManager from '@/components/FAQManager'
 import { calculateReadingTime } from '@/lib/utils/toc'
+
 export const dynamic = 'force-dynamic'
 
-
 export default function NewPostPage() {
+
   const router = useRouter()
   const supabase = createClient()
   
