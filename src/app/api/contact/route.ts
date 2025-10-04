@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
 export async function POST(request: Request) {
   try {
@@ -43,11 +43,23 @@ export async function POST(request: Request) {
     }
     console.log('✅ Saved to database:', submission.id)
 
+    // Check if resend is configured
+    if (!resend) {
+      console.warn('⚠️ Resend not configured, skipping emails')
+      return NextResponse.json(
+        { 
+          message: "Thank you! We'll get back to you soon.",
+          data: submission 
+        },
+        { status: 200 }
+      )
+    }
+
     // 2) Send email notification to admin
     console.log('📨 Sending admin notification...')
     try {
       const adminEmail = await resend.emails.send({
-        from: 'Creative Wired <connect@creativewired.com>', // Use your verified domain
+        from: 'Creative Wired <connect@creativewired.com>',
         to: [process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@creativewired.agency'],
         subject: `New Contact: ${name} from ${company || 'Website'}`,
         html: `
@@ -121,7 +133,7 @@ export async function POST(request: Request) {
     console.log('📨 Sending customer auto-reply...')
     try {
       const customerEmail = await resend.emails.send({
-        from: 'Creative Wired <connect@creativewired.com>', // Use your verified domain
+        from: 'Creative Wired <connect@creativewired.com>',
         to: [email],
         subject: 'Thank you for contacting Creative Wired',
         html: `
@@ -175,7 +187,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       { 
-        message: 'Thank you! We\'ll get back to you soon.',
+        message: "Thank you! We'll get back to you soon.",
         data: submission 
       },
       { status: 200 }
