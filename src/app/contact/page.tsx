@@ -23,10 +23,10 @@ export default function ContactPage() {
       icon: <Mail className="w-8 h-8" />,
       title: 'Email Support',
       description: 'Get detailed responses',
-      contact: 'hello@creativewired.com',
+      contact: 'connect@creativewired.com',
       availability: '24/7 - Response within 2 hours',
       action: 'Send Email',
-      url: 'mailto: hello@creativewired.com'
+      url: 'mailto: connect@creativewired.com'
     },
     {
       icon: <MessageSquare className="w-8 h-8" />,
@@ -35,7 +35,7 @@ export default function ContactPage() {
       contact: 'Available on our Whatsapp',
       availability: 'Mon-Fri, 8AM-8PM EST',
       action: 'Start Chat',
-      url: 'wa.me/+918129191617'
+      url: 'https://wa.me/+918129191617'
     },
     {
       icon: <Calendar className="w-8 h-8" />,
