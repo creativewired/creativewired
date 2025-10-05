@@ -54,7 +54,7 @@ export default function ContactPage() {
       address: 'Coming Soon',
       zipcode: 'Thrissur, Kerala',
       phone: '+91 8129191617',
-      email: 'hello@creativewired.com',
+      email: 'connect@creativewired.com',
       timezone: 'IST',
       isPrimary: false
     },
@@ -63,7 +63,7 @@ export default function ContactPage() {
       address: 'XVI 195, 1st Floor, Ernakulam',
       zipcode: 'Kerala, India - 682508',
       phone: '+91 8129191617',
-      email: 'hello@creativewired.com',
+      email: 'connect@creativewired.com',
       timezone: 'IST',
       isPrimary: true
     },
@@ -72,7 +72,7 @@ export default function ContactPage() {
       address: 'Coming Soon',
       zipcode: 'Kozhikode, Kerala',
       phone: '+91 8129191617',
-      email: 'hello@creativewired.com',
+      email: 'connect@creativewired.com',
       timezone: 'IST',
       isPrimary: false
     }
