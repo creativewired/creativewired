@@ -86,7 +86,14 @@ export default function EditPostPage() {
     try {
       // Extract HTML string from content
       let contentString = formData.content
+      
+      console.log('=== UPDATE DEBUG ===')
+      console.log('Content type:', typeof formData.content)
+      console.log('Content length:', contentString?.length)
+      console.log('Post ID:', params.id)
+      
       if (typeof contentString !== 'string') {
+        console.warn('Content is not a string, converting...')
         contentString = String(contentString || '')
       }
 
@@ -116,22 +123,41 @@ export default function EditPostPage() {
         schema_type: formData.schema_type,
         reading_time: readingTime,
         published_at: status === 'published' ? new Date().toISOString() : null,
+        updated_at: new Date().toISOString(),
       }
 
-      console.log('Updating post with content length:', contentString.length)
+      console.log('Updating with data:', {
+        ...postData,
+        content: `${contentString.substring(0, 100)}... (${contentString.length} chars)`
+      })
 
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('posts')
         .update(postData)
         .eq('id', params.id)
+        .select()
       
-      if (error) throw error
+      console.log('Update result:', { data, error })
       
+      if (error) {
+        console.error('Supabase error:', error)
+        throw error
+      }
+
+      if (!data || data.length === 0) {
+        throw new Error('No rows were updated. Post might not exist.')
+      }
+      
+      console.log('Successfully updated post:', data[0].id)
       alert(`Post ${status === 'published' ? 'published' : 'updated'} successfully!`)
-      router.push('/admin/posts')
-    } catch (error) {
+      
+      setTimeout(() => {
+        router.push('/admin/posts')
+      }, 500)
+      
+    } catch (error: any) {
       console.error('Error updating post:', error)
-      alert('Error updating post. Please try again.')
+      alert(`Error updating post: ${error.message || 'Unknown error'}`)
     } finally {
       setSaving(false)
     }
