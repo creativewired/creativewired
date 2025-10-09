@@ -13,7 +13,6 @@ import Link from 'next/link'
 
 export const dynamic = 'force-dynamic'
 
-
 export default function EditPostPage() {
   const router = useRouter()
   const params = useParams()
@@ -25,8 +24,7 @@ export default function EditPostPage() {
     title: '',
     slug: '',
     excerpt: '',
-    content: '' as string,        // HTML
-    content_json: null as any,    // TipTap JSON
+    content: '',
     featured_image: '',
     author_name: '',
     author_email: '',
@@ -55,7 +53,6 @@ export default function EditPostPage() {
             slug: data.slug || '',
             excerpt: data.excerpt || '',
             content: data.content || '',
-            content_json: data.content_json || null,
             featured_image: data.featured_image || '',
             author_name: data.author_name || '',
             author_email: data.author_email || '',
@@ -87,18 +84,49 @@ export default function EditPostPage() {
   const handleUpdate = async (status: 'draft' | 'published') => {
     setSaving(true)
     try {
-      const readingTime = calculateReadingTime(formData.content || '')
+      // Extract HTML string from content
+      let contentString = formData.content
+      if (typeof contentString !== 'string') {
+        contentString = String(contentString || '')
+      }
+
+      if (!contentString || contentString === '<p></p>') {
+        alert('Please enter some content')
+        setSaving(false)
+        return
+      }
+
+      const readingTime = calculateReadingTime(contentString)
+      
       const postData = {
-        ...formData,
+        title: formData.title.trim(),
+        slug: formData.slug.trim(),
+        excerpt: formData.excerpt.trim() || null,
+        content: contentString,
+        featured_image: formData.featured_image || null,
+        author_name: formData.author_name.trim() || 'Admin',
+        author_email: formData.author_email.trim() || null,
+        category: formData.category || null,
+        tags: formData.tags,
         status,
+        meta_title: formData.meta_title.trim() || formData.title.trim(),
+        meta_description: formData.meta_description.trim() || formData.excerpt.trim(),
+        faq_items: formData.faq_items,
+        auto_generate_toc: formData.auto_generate_toc,
+        schema_type: formData.schema_type,
         reading_time: readingTime,
         published_at: status === 'published' ? new Date().toISOString() : null,
       }
+
+      console.log('Updating post with content length:', contentString.length)
+
       const { error } = await supabase
         .from('posts')
         .update(postData)
         .eq('id', params.id)
+      
       if (error) throw error
+      
       alert(`Post ${status === 'published' ? 'published' : 'updated'} successfully!`)
       router.push('/admin/posts')
     } catch (error) {
@@ -220,8 +248,8 @@ export default function EditPostPage() {
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Content *</label>
           <TipTapEditor
-            content={formData.content_json || formData.content || '<p></p>'}
-            onChange={({ html, json }) => setFormData({ ...formData, content: html, content_json: json })}
+            content={formData.content || '<p></p>'}
+            onChange={(payload) => setFormData({ ...formData, content: payload.html })}
             placeholder="Start writing your post..."
           />
         </div>
