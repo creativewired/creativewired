@@ -20,13 +20,13 @@ const nextConfig = {
   },
   serverExternalPackages: ['@supabase/supabase-js', '@supabase/auth-js'],
   async rewrites() {
-    return [
-      {
-        source: '/sitemap.xml',
-        destination: '/sitemap.xml/route',
-      },
-    ]
-  },
+  return [
+    {
+      source: '/sitemap.xml',
+      destination: '/sitemap.xml/route',
+    },
+  ];
+},
 }
 
 module.exports = nextConfig
