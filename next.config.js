@@ -19,6 +19,14 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   serverExternalPackages: ['@supabase/supabase-js', '@supabase/auth-js'],
+  async rewrites() {
+    return [
+      {
+        source: '/sitemap.xml',
+        destination: '/sitemap.xml/route',
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
