@@ -3,16 +3,16 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowLeft, ArrowRight, Calendar, Clock, Tag, ArrowUpRight } from 'lucide-react'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
-import { getAllPosts, getPostBySlug } from '../../../lib/blog'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import { getAllPosts, getPostBySlug } from '@/lib/blog'
 
-export async function generateStaticParams() {
-  return getAllPosts().map((p) => ({ slug: p.slug }))
-}
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = getPostBySlug(slug)
   if (!post) return {}
   return {
     title:       `${post.title} | Creative Wired Blog`,
@@ -26,12 +26,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 const categoryColors: Record<string, string> = {
-  'SEO':                    'bg-green-50  text-green-700  border-green-100',
-  'Paid Advertising':       'bg-blue-50   text-blue-700   border-blue-100',
-  'Web Development':        'bg-purple-50 text-purple-700 border-purple-100',
-  'Social Media':           'bg-orange-50 text-orange-700 border-orange-100',
-  'Software Development':   'bg-rose-50   text-rose-700   border-rose-100',
-  'General':                'bg-neutral-50 text-neutral-600 border-neutral-200',
+  'SEO':                   'bg-green-50  text-green-700  border-green-100',
+  'Paid Advertising':      'bg-blue-50   text-blue-700   border-blue-100',
+  'Web Development':       'bg-purple-50 text-purple-700 border-purple-100',
+  'Social Media':          'bg-orange-50 text-orange-700 border-orange-100',
+  'Software Development':  'bg-rose-50   text-rose-700   border-rose-100',
+  'General':               'bg-neutral-50 text-neutral-600 border-neutral-200',
 }
 
 const components = {
@@ -74,8 +74,9 @@ const components = {
   ),
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug)
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = getPostBySlug(slug)
   if (!post) notFound()
 
   const allPosts   = getAllPosts()
@@ -84,17 +85,16 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const prev       = allPosts[currentIdx - 1] ?? null
   const next       = allPosts[currentIdx + 1] ?? null
 
-  // Structured data
   const articleSchema = {
-    '@context':        'https://schema.org',
-    '@type':           'Article',
-    headline:          post.title,
-    description:       post.description,
-    image:             post.image,
-    author:            { '@type': 'Person', name: post.author },
-    publisher:         { '@type': 'Organization', name: 'Creative Wired', logo: { '@type': 'ImageObject', url: 'https://creativewired.agency/logo.png' } },
-    datePublished:     post.date,
-    mainEntityOfPage:  { '@type': 'WebPage', '@id': `https://creativewired.agency/blog/${post.slug}` },
+    '@context':       'https://schema.org',
+    '@type':          'Article',
+    headline:         post.title,
+    description:      post.description,
+    image:            post.image,
+    author:           { '@type': 'Person', name: post.author },
+    publisher:        { '@type': 'Organization', name: 'Creative Wired', logo: { '@type': 'ImageObject', url: 'https://creativewired.agency/logo.png' } },
+    datePublished:    post.date,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://creativewired.agency/blog/${post.slug}` },
   }
 
   return (
@@ -103,13 +103,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
       <Header currentPage="blog" />
 
-      {/* ══════════════════════════════════════════
-          HERO
-      ══════════════════════════════════════════ */}
+      {/* HERO */}
       <section className="pt-28 pb-12 px-5 md:px-12 lg:px-20 bg-white border-b border-neutral-100">
         <div className="max-w-6xl mx-auto">
-
-          {/* Breadcrumb */}
           <div className="flex items-center gap-2 mb-10">
             <Link
               href="/blog"
@@ -166,9 +162,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
       )}
 
-      {/* ══════════════════════════════════════════
-          CONTENT + SIDEBAR
-      ══════════════════════════════════════════ */}
+      {/* CONTENT + SIDEBAR */}
       <section className="py-14 px-5 md:px-12 lg:px-20 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-12 gap-12 md:gap-16">
@@ -176,7 +170,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             <article className="md:col-span-8" id="blog-article">
               <MDXRemote source={post.content} components={components} />
 
-              {/* Tags */}
               {post.tags.length > 0 && (
                 <div className="mt-12 pt-8 border-t border-neutral-100">
                   <div className="flex items-center gap-2 mb-3">
@@ -194,7 +187,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               )}
             </article>
 
-            {/* Sidebar */}
             <aside className="md:col-span-4 space-y-5">
               <div className="rounded-2xl bg-neutral-900 p-6 sticky top-24">
                 <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-2">Work With Us</p>
@@ -215,9 +207,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
-          RELATED POSTS
-      ══════════════════════════════════════════ */}
+      {/* RELATED POSTS */}
       {related.length > 0 && (
         <section className="py-16 px-5 md:px-12 lg:px-20 bg-neutral-50 border-t border-neutral-100">
           <div className="max-w-6xl mx-auto">
@@ -250,9 +240,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </section>
       )}
 
-      {/* ══════════════════════════════════════════
-          PREV / NEXT
-      ══════════════════════════════════════════ */}
+      {/* PREV / NEXT */}
       <section className="py-10 px-5 md:px-12 lg:px-20 bg-white border-t border-neutral-100">
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-3">
           {prev ? (
