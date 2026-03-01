@@ -14,11 +14,11 @@ export default function Navigation({ currentPage }: NavigationProps) {
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
 
   const services = [
-    { title: 'SEO Services',            description: 'Rank #1 on Google in Dubai & Kochi',      icon: <Search className="w-4 h-4" />,   href: '/seo',                      no: '01' },
-    { title: 'Web Development',         description: 'Custom websites & web applications',       icon: <Code className="w-4 h-4" />,     href: '/web-development',          no: '02' },
-    { title: 'Paid Advertising',        description: 'Google Ads, Meta & LinkedIn campaigns',    icon: <TrendingUp className="w-4 h-4" />, href: '/paid-advertising',        no: '03' },
-    { title: 'Social Media Management', description: 'Instagram, Facebook, TikTok & LinkedIn',  icon: <Share2 className="w-4 h-4" />,   href: '/social-media-management',  no: '04' },
-    { title: 'Software Development',    description: 'Mobile apps, SaaS & automation tools',    icon: <Cpu className="w-4 h-4" />,      href: '/software-development',     no: '05' },
+    { title: 'SEO Services',            description: 'Rank #1 on Google in Dubai & Kochi',      icon: <Search className="w-4 h-4" />,     href: '/seo',                      no: '01' },
+    { title: 'Web Development',         description: 'Custom websites & web applications',       icon: <Code className="w-4 h-4" />,       href: '/web-development',          no: '02' },
+    { title: 'Paid Advertising',        description: 'Google Ads, Meta & LinkedIn campaigns',    icon: <TrendingUp className="w-4 h-4" />, href: '/paid-advertising',         no: '03' },
+    { title: 'Social Media Management', description: 'Instagram, Facebook, TikTok & LinkedIn',  icon: <Share2 className="w-4 h-4" />,     href: '/social-media-management',  no: '04' },
+    { title: 'Software Development',    description: 'Mobile apps, SaaS & automation tools',    icon: <Cpu className="w-4 h-4" />,        href: '/software-development',     no: '05' },
   ]
 
   const isServicePage = [
@@ -79,7 +79,10 @@ export default function Navigation({ currentPage }: NavigationProps) {
           </div>
         </div>
 
-        {/* ✅ Case Studies */}
+        <Link href="/projects" className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${currentPage === 'projects' ? 'text-neutral-900 bg-neutral-100' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50'}`}>
+          Projects
+        </Link>
+
         <Link href="/case-studies" className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${currentPage === 'case-studies' ? 'text-neutral-900 bg-neutral-100' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50'}`}>
           Case Studies
         </Link>
@@ -104,7 +107,7 @@ export default function Navigation({ currentPage }: NavigationProps) {
       </button>
 
       {/* MOBILE MENU */}
-      <div className={`md:hidden absolute top-full left-0 right-0 bg-white border-b border-neutral-100 shadow-xl shadow-neutral-100/50 transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-[700px] opacity-100' : 'max-h-0 opacity-0'}`}>
+      <div className={`md:hidden absolute top-full left-0 right-0 bg-white border-b border-neutral-100 shadow-xl shadow-neutral-100/50 transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
         <div className="px-5 py-6 space-y-1">
 
           <Link href="/" onClick={closeMobileMenu} className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${currentPage === 'home' ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'}`}>
@@ -135,7 +138,10 @@ export default function Navigation({ currentPage }: NavigationProps) {
             </div>
           </div>
 
-          {/* ✅ Case Studies */}
+          <Link href="/projects" onClick={closeMobileMenu} className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${currentPage === 'projects' ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'}`}>
+            Projects
+          </Link>
+
           <Link href="/case-studies" onClick={closeMobileMenu} className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${currentPage === 'case-studies' ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'}`}>
             Case Studies
           </Link>
