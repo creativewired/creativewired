@@ -3,11 +3,14 @@ import { getPostBySlug } from '@/lib/blog'
 import { redirect, notFound } from 'next/navigation'
 import PostEditor from '../../components/PostEditor'
 
-export default async function EditPostPage({ params }: { params: { slug: string } }) {
+export const dynamic = 'force-dynamic'
+
+export default async function EditPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const session = await getSession()
   if (!session) redirect('/admin/login')
 
-  const post = getPostBySlug(params.slug)
+  const { slug } = await params
+  const post = getPostBySlug(slug)
   if (!post) notFound()
 
   return (

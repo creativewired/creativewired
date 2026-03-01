@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'upload.wikimedia.org',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.microlink.io',
+      },
     ],
   },
   eslint: {
@@ -20,13 +24,13 @@ const nextConfig = {
   },
   serverExternalPackages: ['@supabase/supabase-js', '@supabase/auth-js'],
   async rewrites() {
-  return [
-    {
-      source: '/sitemap.xml',
-      destination: '/sitemap.xml/route',
-    },
-  ];
-},
+    return [
+      {
+        source: '/sitemap.xml',
+        destination: '/sitemap.xml/route',
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig

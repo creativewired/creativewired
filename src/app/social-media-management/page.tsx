@@ -238,7 +238,7 @@ export default function SocialMediaManagementPage() {
       {/* WhatsApp float */}
       <div className="fixed bottom-6 right-5 md:bottom-8 md:right-8 z-50">
         <Link
-          href="https://wa.me/+918129191617"
+          href="https://wa.me/+918431373779"
           className="w-11 h-11 rounded-full bg-neutral-900 flex items-center justify-center shadow-lg hover:bg-neutral-700 transition-colors"
           aria-label="Contact Creative Wired on WhatsApp"
         >
