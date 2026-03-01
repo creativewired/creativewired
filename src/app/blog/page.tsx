@@ -1,9 +1,9 @@
 import { ArrowRight, ArrowUpRight, Calendar, Clock, Tag, Filter } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import { getAllPosts } from '../../lib/blog'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import { getAllPosts } from '@/lib/blog'
 
 export const metadata = {
   title: 'Digital Marketing Blog - Expert Tips & Insights | Creative Wired',
