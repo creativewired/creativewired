@@ -1,89 +1,69 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { LayoutDashboard, FileText, Mail, Settings, LogOut } from 'lucide-react'
-
-export const dynamic = 'force-dynamic'
+import { usePathname, useRouter } from 'next/navigation'
+import { LayoutDashboard, FileText, Settings, LogOut } from 'lucide-react'
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const router = useRouter()
 
   const isActive = (path: string) => pathname === path || pathname.startsWith(path + '/')
 
+  const navItems = [
+    { href: '/admin',          label: 'Dashboard',  icon: LayoutDashboard, exact: true },
+    { href: '/admin/posts',    label: 'Blog Posts', icon: FileText,        exact: false },
+    { href: '/admin/settings', label: 'Settings',   icon: Settings,        exact: true },
+  ]
+
+  const handleLogout = async () => {
+    await fetch('/api/admin/logout', { method: 'POST' })
+    router.push('/admin/login')
+  }
+
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-[#f5f5f7] flex">
+
       {/* Sidebar */}
-      <aside className="w-64 bg-black text-white fixed h-full">
-        <div className="p-6">
-          <h1 className="text-2xl font-bold">Creative Wired</h1>
-          <p className="text-gray-400 text-sm">Admin Panel</p>
+      <aside className="w-60 bg-white border-r border-neutral-200/60 fixed h-full flex flex-col shadow-sm">
+        <div className="px-6 py-5 border-b border-neutral-100">
+          <p className="text-sm font-bold text-neutral-900">Creative Wired</p>
+          <p className="text-xs text-neutral-400 mt-0.5">Admin Panel</p>
         </div>
 
-        <nav className="px-4 space-y-2">
-          <Link
-            href="/admin"
-            className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-              pathname === '/admin' 
-                ? 'bg-yellow-400 text-black' 
-                : 'hover:bg-gray-800'
-            }`}
-          >
-            <LayoutDashboard className="w-5 h-5" />
-            <span>Dashboard</span>
-          </Link>
-
-          <Link
-            href="/admin/posts"
-            className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-              isActive('/admin/posts')
-                ? 'bg-yellow-400 text-black'
-                : 'hover:bg-gray-800'
-            }`}
-          >
-            <FileText className="w-5 h-5" />
-            <span>Blog Posts</span>
-          </Link>
-
-          <Link
-            href="/admin/contacts"
-            className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-              pathname === '/admin/contacts'
-                ? 'bg-yellow-400 text-black'
-                : 'hover:bg-gray-800'
-            }`}
-          >
-            <Mail className="w-5 h-5" />
-            <span>Contact Submissions</span>
-          </Link>
-
-          <Link
-            href="/admin/settings"
-            className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-              pathname === '/admin/settings'
-                ? 'bg-yellow-400 text-black'
-                : 'hover:bg-gray-800'
-            }`}
-          >
-            <Settings className="w-5 h-5" />
-            <span>Settings</span>
-          </Link>
-
-          <button
-            onClick={() => {
-              // Add logout logic here
-              window.location.href = '/admin/login'
-            }}
-            className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors w-full text-left mt-4 border-t border-gray-800 pt-6"
-          >
-            <LogOut className="w-5 h-5" />
-            <span>Logout</span>
-          </button>
+        <nav className="flex-1 px-3 py-4 space-y-1">
+          {navItems.map(({ href, label, icon: Icon, exact }) => {
+            const active = exact ? pathname === href : isActive(href)
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                  active
+                    ? 'bg-neutral-900 text-white'
+                    : 'text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900'
+                }`}
+              >
+                <Icon className="w-4 h-4 flex-shrink-0" />
+                {label}
+              </Link>
+            )
+          })}
         </nav>
+
+        <div className="px-3 py-4 border-t border-neutral-100">
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 transition-colors w-full"
+          >
+            <LogOut className="w-4 h-4 flex-shrink-0" />
+            Logout
+          </button>
+        </div>
       </aside>
 
       {/* Main Content */}
-      <main className="ml-64 flex-1 p-8">
+      <main className="ml-60 flex-1 min-h-screen">
         {children}
       </main>
     </div>

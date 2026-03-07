@@ -3,8 +3,8 @@ import {
   Target, BarChart3, Globe, Shield, Clock, Award, Users, CheckCircle, Star
 } from 'lucide-react'
 import Link from 'next/link'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
+import Header from '../../../components/Header'
+import Footer from '../../../components/Footer'
 
 export const metadata = {
   title: 'SEO Agency Dubai, Abu Dhabi & Kochi | #1 SEO Services UAE & India | Creative Wired',

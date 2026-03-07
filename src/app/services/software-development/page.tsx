@@ -3,8 +3,8 @@ import {
   Cpu, Smartphone, Globe, Database, Cloud, Shield,
 } from 'lucide-react'
 import Link from 'next/link'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
+import Header from '../../../components/Header'
+import Footer from '../../../components/Footer'
 
 export const metadata = {
   title: 'Software Development Dubai, Kochi & UAE | Custom Apps & SaaS | Creative Wired',

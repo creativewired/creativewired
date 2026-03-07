@@ -5,11 +5,11 @@ import { Instagram, Linkedin, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-r
 export default function Footer() {
 
   const services = [
-    { name: 'SEO Services',            href: '/seo'                     },
-    { name: 'Web Development',         href: '/web-development'         },
-    { name: 'Paid Advertising',        href: '/paid-advertising'        },
-    { name: 'Social Media Management', href: '/social-media-management' },
-    { name: 'Software Development',    href: '/software-development'    },
+    { name: 'SEO Services',            href: 'services/seo'                     },
+    { name: 'Web Development',         href: 'services/web-development'         },
+    { name: 'Paid Advertising',        href: 'services/paid-advertising'        },
+    { name: 'Social Media Management', href: 'services/social-media-management' },
+    { name: 'Software Development',    href: 'services/software-development'    },
   ]
 
   const quickLinks = [

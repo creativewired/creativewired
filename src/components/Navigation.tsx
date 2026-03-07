@@ -14,17 +14,14 @@ export default function Navigation({ currentPage }: NavigationProps) {
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
 
   const services = [
-    { title: 'SEO Services',            description: 'Rank #1 on Google in Dubai & Kochi',      icon: <Search className="w-4 h-4" />,     href: '/seo',                      no: '01' },
-    { title: 'Web Development',         description: 'Custom websites & web applications',       icon: <Code className="w-4 h-4" />,       href: '/web-development',          no: '02' },
-    { title: 'Paid Advertising',        description: 'Google Ads, Meta & LinkedIn campaigns',    icon: <TrendingUp className="w-4 h-4" />, href: '/paid-advertising',         no: '03' },
-    { title: 'Social Media Management', description: 'Instagram, Facebook, TikTok & LinkedIn',  icon: <Share2 className="w-4 h-4" />,     href: '/social-media-management',  no: '04' },
-    { title: 'Software Development',    description: 'Mobile apps, SaaS & automation tools',    icon: <Cpu className="w-4 h-4" />,        href: '/software-development',     no: '05' },
+    { title: 'SEO Services',            description: 'Rank #1 on Google in Dubai & Kochi',      icon: <Search className="w-4 h-4" />,     href: '/services/seo',                      no: '01' },
+    { title: 'Web Development',         description: 'Custom websites & web applications',       icon: <Code className="w-4 h-4" />,       href: '/services/web-development',          no: '02' },
+    { title: 'Paid Advertising',        description: 'Google Ads, Meta & LinkedIn campaigns',    icon: <TrendingUp className="w-4 h-4" />, href: '/services/paid-advertising',         no: '03' },
+    { title: 'Social Media Management', description: 'Instagram, Facebook, TikTok & LinkedIn',  icon: <Share2 className="w-4 h-4" />,     href: '/services/social-media-management',  no: '04' },
+    { title: 'Software Development',    description: 'Mobile apps, SaaS & automation tools',    icon: <Cpu className="w-4 h-4" />,        href: '/services/software-development',     no: '05' },
   ]
 
-  const isServicePage = [
-    'services', 'seo', 'web-development',
-    'paid-advertising', 'social-media-management', 'software-development'
-  ].includes(currentPage ?? '')
+  const isServicePage = (currentPage ?? '').startsWith('services') || currentPage === 'services'
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false)

@@ -3,8 +3,8 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
+import Header from '../../../components/Header'
+import Footer from '../../../components/Footer'
 
 export const metadata = {
   title: 'Paid Advertising Agency Dubai & Kochi | Google Ads, Meta Ads | Creative Wired',
