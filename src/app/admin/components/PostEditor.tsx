@@ -218,7 +218,11 @@ export default function PostEditor({ mode, initialSlug, initial }: PostEditorPro
       .replace(/<u>(.*?)<\/u>/gi,                     '$1')
       .replace(/<a href="([^"]*)"[^>]*>(.*?)<\/a>/gi, '[$2]($1)')
       .replace(/<img[^>]*src="([^"]*)"[^>]*\/?>/gi,   '![]($1)')
+<<<<<<< HEAD
       .replace(/<blockquote>([\s\S]*?)<\/blockquote>/gi, '> $1')
+=======
+      .replace(/<blockquote>(.*?)<\/blockquote>/gis,  '> $1')
+>>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
       .replace(/<li>(.*?)<\/li>/gi,                   '- $1')
       .replace(/<ul>|<\/ul>|<ol>|<\/ol>/gi,           '')
       .replace(/<p[^>]*>(.*?)<\/p>/gi,                '$1\n\n')
@@ -309,7 +313,11 @@ export default function PostEditor({ mode, initialSlug, initial }: PostEditorPro
         <div className="flex flex-wrap gap-1">
           <ToolbarBtn title="Bullet List"   active={editor.isActive('bulletList')}  onClick={() => editor.chain().focus().toggleBulletList().run()}>• List</ToolbarBtn>
           <ToolbarBtn title="Numbered List" active={editor.isActive('orderedList')} onClick={() => editor.chain().focus().toggleOrderedList().run()}>1. List</ToolbarBtn>
+<<<<<<< HEAD
           <ToolbarBtn title="Blockquote"    active={editor.isActive('blockquote')}  onClick={() => editor.chain().focus().toggleBlockquote().run()}>{'>'}</ToolbarBtn>
+=======
+          <ToolbarBtn title="Blockquote"    active={editor.isActive('blockquote')}  onClick={() => editor.chain().focus().toggleBlockquote().run()}>"</ToolbarBtn>
+>>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
           <ToolbarBtn title="Code Block"    active={editor.isActive('codeBlock')}   onClick={() => editor.chain().focus().toggleCodeBlock().run()}>{'{ }'}</ToolbarBtn>
           <ToolbarBtn title="Divider"       onClick={() => editor.chain().focus().setHorizontalRule().run()}>—</ToolbarBtn>
         </div>
@@ -417,7 +425,11 @@ export default function PostEditor({ mode, initialSlug, initial }: PostEditorPro
                   <div className="flex items-center gap-0.5 pr-2 mr-1 border-r border-neutral-100">
                     <ToolbarBtn title="Bullet List"   active={editor.isActive('bulletList')}  onClick={() => editor.chain().focus().toggleBulletList().run()}>• List</ToolbarBtn>
                     <ToolbarBtn title="Numbered List" active={editor.isActive('orderedList')} onClick={() => editor.chain().focus().toggleOrderedList().run()}>1. List</ToolbarBtn>
+<<<<<<< HEAD
                     <ToolbarBtn title="Blockquote"    active={editor.isActive('blockquote')}  onClick={() => editor.chain().focus().toggleBlockquote().run()}>{'>'}</ToolbarBtn>
+=======
+                    <ToolbarBtn title="Blockquote"    active={editor.isActive('blockquote')}  onClick={() => editor.chain().focus().toggleBlockquote().run()}>"</ToolbarBtn>
+>>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
                     <ToolbarBtn title="Code Block"    active={editor.isActive('codeBlock')}   onClick={() => editor.chain().focus().toggleCodeBlock().run()}>{'{ }'}</ToolbarBtn>
                     <ToolbarBtn title="Divider"       onClick={() => editor.chain().focus().setHorizontalRule().run()}>—</ToolbarBtn>
                   </div>
@@ -506,7 +518,10 @@ export default function PostEditor({ mode, initialSlug, initial }: PostEditorPro
                 </label>
                 {image && (
                   <div className="mt-2 relative group">
+<<<<<<< HEAD
                     {/* eslint-disable-next-line @next/next/no-img-element -- Base64 CMS preview is not a deployable image asset. */}
+=======
+>>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
                     <img src={image} alt="featured" className="w-full aspect-video object-cover rounded-xl border border-neutral-100" />
                     <button onClick={() => setImage('')} className="absolute top-2 right-2 bg-white rounded-full p-1 shadow opacity-0 group-hover:opacity-100 transition-opacity">
                       <Trash2 className="w-3 h-3 text-red-400" />

@@ -5,6 +5,7 @@ import { Instagram, Linkedin, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-r
 export default function Footer() {
 
   const services = [
+<<<<<<< HEAD
     { name: 'SEO Services',            href: '/services/seo'                     },
     { name: 'Web Development',         href: '/services/web-development'         },
     { name: 'Paid Advertising',        href: '/services/paid-advertising'        },
@@ -18,6 +19,20 @@ export default function Footer() {
     { href: '/seo-tools', label: 'SEO Tool'  },
     { href: '/blog',     label: 'Blog'      },
     { href: '/contact',  label: 'Contact'   },
+=======
+    { name: 'SEO Services',            href: 'services/seo'                     },
+    { name: 'Web Development',         href: 'services/web-development'         },
+    { name: 'Paid Advertising',        href: 'services/paid-advertising'        },
+    { name: 'Social Media Management', href: 'services/social-media-management' },
+    { name: 'Software Development',    href: 'services/software-development'    },
+  ]
+
+  const quickLinks = [
+    { href: '/',         label: 'Home'     },
+    { href: '/services', label: 'Services' },
+    { href: '/blog',     label: 'Blog'     },
+    { href: '/contact',  label: 'Contact'  },
+>>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
   ]
 
   const socialLinks = [
@@ -183,6 +198,10 @@ export default function Footer() {
                   <MapPin className="w-3.5 h-3.5 text-neutral-300 mt-0.5 flex-shrink-0" />
                   <span className="text-xs text-neutral-400 font-light leading-relaxed">
                     <b>Headoffice</b><br/>Ernakulam, Kerala, India<br/>
+<<<<<<< HEAD
+=======
+                    <b>Branch</b> <br/>Dubai, UAE
+>>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
                   </span>
                 </div>
               </li>

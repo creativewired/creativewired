@@ -128,7 +128,11 @@ export default function ContactPageClient() {
   },
   {
     city: 'Dubai',
+<<<<<<< HEAD
     tag: 'UAE Coming soon',
+=======
+    tag: 'UAE Office',
+>>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
     address: 'Dubai, United Arab Emirates',
     region: 'UAE',
     phone: '+971 555 207 899',
