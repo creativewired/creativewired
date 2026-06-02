@@ -24,14 +24,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${domain}/services/paid-advertising`,                priority: 0.9, changeFrequency: 'weekly'  },
     { url: `${domain}/services/social-media-management`,         priority: 0.9, changeFrequency: 'weekly'  },
     { url: `${domain}/services/software-development`,            priority: 0.9, changeFrequency: 'weekly'  },
-<<<<<<< HEAD
     { url: `${domain}/seo-tools`,                                 priority: 0.8, changeFrequency: 'weekly'  },
     { url: `${domain}/seo-tools/title-tag-checker`,                priority: 0.7, changeFrequency: 'weekly'  },
     { url: `${domain}/seo-tools/meta-description-checker`,         priority: 0.7, changeFrequency: 'weekly'  },
     { url: `${domain}/seo-tools/open-graph-checker`,               priority: 0.7, changeFrequency: 'weekly'  },
     { url: `${domain}/seo-tools/twitter-card-checker`,             priority: 0.7, changeFrequency: 'weekly'  },
-=======
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
     { url: `${domain}/projects`,                                 priority: 0.8, changeFrequency: 'weekly'  },
     { url: `${domain}/case-studies`,                             priority: 0.8, changeFrequency: 'weekly'  },
     { url: `${domain}/blog`,                                     priority: 0.8, changeFrequency: 'daily'   },

@@ -1,19 +1,19 @@
 export type Project = {
-  slug:        string
-  name:        string
-  tagline:     string
+  slug: string
+  name: string
+  tagline: string
   description: string
-  industry:    string
-  location:    string
-  services:    string[]
-  techStack:   string[]
-  features:    string[]
-  image:       string
-  gallery?:    string[]
-  liveUrl?:    string
-  caseStudy?:  string
-  featured:    boolean
-  year:        string
+  industry: string
+  location: string
+  services: string[]
+  techStack: string[]
+  features: string[]
+  image: string
+  gallery?: string[]
+  liveUrl?: string
+  caseStudy?: string
+  featured: boolean
+  year: string
 }
 
 const screenshot = (url: string) =>
@@ -21,15 +21,16 @@ const screenshot = (url: string) =>
 
 export const projects: Project[] = [
   {
-    slug:        'al-reem-fibreglass',
-    name:        'Al Reem Fibre Glass',
-    tagline:     "UAE's leading shading & fibre glass specialists since 1994",
-    description: "A professional corporate website for Al Reem Fibre Glass & Gen. Cont. Co. LLC — the UAE's trusted partner for high-quality shading systems and construction solutions since 1994. Serving royal palaces to public infrastructure across Al Ain, Abu Dhabi and all Emirates.",
-    industry:    'Construction & Contracting',
-    location:    'Abu Dhabi, UAE',
-    services:    ['Web Development', 'SEO'],
-    techStack:   ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-    features:    [
+    slug: 'al-reem-fibreglass',
+    name: 'Al Reem Fibre Glass',
+    tagline: "UAE's leading shading & fibre glass specialists since 1994",
+    description:
+      "A professional corporate website for Al Reem Fibre Glass & Gen. Cont. Co. LLC — the UAE's trusted partner for high-quality shading systems and construction solutions since 1994. Serving royal palaces to public infrastructure across Al Ain, Abu Dhabi and all Emirates.",
+    industry: 'Construction & Contracting',
+    location: 'Abu Dhabi, UAE',
+    services: ['Web Development', 'SEO'],
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    features: [
       'Car parking shades product showcase',
       'PVC structures and GRP lining service pages',
       'General contracting portfolio gallery',
@@ -38,116 +39,22 @@ export const projects: Project[] = [
       'UAE-focused local SEO for shading and contracting keywords',
       'Mobile-first responsive design',
     ],
-    image:    screenshot('https://www.alreemfibre.com/'),
-    liveUrl:  'https://www.alreemfibre.com/',
-<<<<<<< HEAD
+    image: screenshot('https://www.alreemfibre.com/'),
+    liveUrl: 'https://www.alreemfibre.com/',
     featured: true,
-    year:     '2026',
+    year: '2026',
   },
   {
-=======
-    featured: false,
-    year:     '2026',
-  },
-  {
-  slug:        'privilege-limo',
-  name:        'Privilege Limo',
-  tagline:     'Luxury chauffeur service website with booking and premium branding',
-  description: 'A high-end limousine service website designed to attract premium clients in Dubai. Focused on elegant UI, seamless booking experience, and strong local SEO presence.',
-  industry:    'Luxury Transport',
-  location:    'Dubai, UAE',
-  services:    ['Web Development', 'UI/UX Design', 'SEO'],
-  techStack:   ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-  features:    [
-    'Luxury-focused landing pages',
-    'Fleet showcase with premium visuals',
-    'WhatsApp & call booking integration',
-    'SEO optimisation for Dubai limo services',
-    'Mobile-first responsive design',
-    'Fast-loading performance optimised pages',
-  ],
-  image:    screenshot('https://privilegelimo.com'),
-  liveUrl:  'https://privilegelimo.com',
-  featured: false,
-  year:     '2025',
-},
-{
-  slug:        'smart-auto-uae',
-  name:        'Smart Auto UAE',
-  tagline:     'Automotive service website with lead generation and service pages',
-  description: 'A conversion-driven automotive website for car services in the UAE. Designed to generate leads through clear CTAs, service-focused pages, and trust-building content.',
-  industry:    'Automotive Services',
-  location:    'UAE',
-  services:    ['Web Development', 'SEO'],
-  techStack:   ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-  features:    [
-    'Dedicated service pages (PPF, detailing, tinting)',
-    'Lead generation forms & WhatsApp CTA',
-    'SEO-optimised automotive content',
-    'Before & after service visuals',
-    'Clean and modern UI design',
-    'Fast and responsive performance',
-  ],
-  image:    screenshot('https://smartautouae.ae'),
-  liveUrl:  'https://smartautouae.ae',
-  featured: false,
-  year:     '2025',
-},
-{
-  slug:        'totalgard-uae',
-  name:        'TotalGard UAE',
-  tagline:     'Landscaping and garden services website with local SEO focus',
-  description: 'A professional landscaping services website tailored for the UAE market. Built to showcase services, generate inquiries, and rank for local garden and maintenance searches.',
-  industry:    'Landscaping & Garden Services',
-  location:    'UAE',
-  services:    ['Web Development', 'SEO'],
-  techStack:   ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-  features:    [
-    'Service-specific landing pages',
-    'Local SEO targeting UAE landscaping keywords',
-    'Inquiry forms and WhatsApp integration',
-    'Project gallery showcase',
-    'Clean and nature-inspired UI design',
-    'Optimised for mobile users',
-  ],
-  image:    screenshot('https://totalgard.ae'),
-  liveUrl:  'https://totalgard.ae',
-  featured: false,
-  year:     '2025',
-},
-{
-  slug:        'alfalasi-limo',
-  name:        'Al Falasi Limo',
-  tagline:     'Corporate limousine service website with booking-focused UX',
-  description: 'A corporate limousine service platform built to attract business and airport transfer clients. Focused on trust, clarity, and high conversion through strong CTAs and structured content.',
-  industry:    'Luxury Transport',
-  location:    'Dubai, UAE',
-  services:    ['Web Development', 'SEO'],
-  techStack:   ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-  features:    [
-    'Corporate and airport transfer pages',
-    'Fleet showcase with detailed vehicle info',
-    'Quick booking via WhatsApp and call',
-    'SEO for Dubai chauffeur services',
-    'Professional and trust-focused UI',
-    'Performance optimised for fast loading',
-  ],
-  image:    screenshot('https://alfalasilimo.com'),
-  liveUrl:  'https://alfalasilimo.com',
-  featured: false,
-  year:     '2025',
-},
-  {
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
-    slug:        'yakuza-racing',
-    name:        'Yakuza Racing',
-    tagline:     'High-performance motorsport and racing culture website',
-    description: 'A bold, high-energy website for Yakuza Racing — built for motorsport enthusiasts and racing culture. Features event listings, team profiles, performance parts showcase and a dark aggressive aesthetic matching the brand identity.',
-    industry:    'Motorsport & Automotive',
-    location:    'UAE',
-    services:    ['Web Development', 'SEO'],
-    techStack:   ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-    features:    [
+    slug: 'yakuza-racing',
+    name: 'Yakuza Racing',
+    tagline: 'High-performance motorsport and racing culture website',
+    description:
+      'A bold, high-energy website for Yakuza Racing — built for motorsport enthusiasts and racing culture. Features event listings, team profiles, performance parts showcase and a dark aggressive aesthetic matching the brand identity.',
+    industry: 'Motorsport & Automotive',
+    location: 'UAE',
+    services: ['Web Development', 'SEO'],
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    features: [
       'Dark, aggressive brand-matched design',
       'Racing events and calendar section',
       'Team and driver profile pages',
@@ -156,43 +63,44 @@ export const projects: Project[] = [
       'WhatsApp and social media CTAs',
       'Mobile-first responsive design',
     ],
-    image:    screenshot('https://yakuza-racing-academy.vercel.app/'),
-    liveUrl:  'https://yakuza-racing-academy.vercel.app/',
-<<<<<<< HEAD
+    image: screenshot('https://yakuza-racing-academy.vercel.app/'),
+    liveUrl: 'https://yakuza-racing-academy.vercel.app/',
     featured: true,
-    year:     '2026',
+    year: '2026',
   },
   {
-    slug:        'wayfarer-films',
-    name:        'Wayfarer Films',
-    tagline:     'Video production company website with portfolio & YouTube embeds',
-    description: 'A sleek, cinematic website for a video production company showcasing their portfolio, YouTube reel embeds, behind-the-scenes content and client enquiry flow.',
-    industry:    'Video Production',
-    location:    'Kerala, India',
-    services:    ['Web Development', 'SEO'],
-    techStack:   ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-    features:    [
+    slug: 'wayfarer-films',
+    name: 'Wayfarer Films',
+    tagline: 'Video production company website with portfolio & YouTube embeds',
+    description:
+      'A sleek, cinematic website for a video production company showcasing their portfolio, YouTube reel embeds, behind-the-scenes content and client enquiry flow.',
+    industry: 'Video Production',
+    location: 'Kerala, India',
+    services: ['Web Development', 'SEO'],
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    features: [
       'Full-screen hero video reel',
       'YouTube embed portfolio gallery',
       'Service packages with enquiry CTA',
       'Mobile-first responsive design',
       'SEO-optimised pages for video production keywords',
     ],
-    image:    screenshot('https://wayfarerfilms.in'),
-    liveUrl:  'https://wayfarerfilms.in',
+    image: screenshot('https://wayfarerfilms.in'),
+    liveUrl: 'https://wayfarerfilms.in',
     featured: true,
-    year:     '2025',
+    year: '2025',
   },
   {
-    slug:        'wayfarer-inventory',
-    name:        'Wayfarer Inventory',
-    tagline:     'Equipment rental and inventory management system with barcode scanning',
-    description: 'A custom internal software system built for Wayfarer Films to manage their production equipment inventory. Features barcode scanning, rental tracking, availability calendars and equipment condition logging.',
-    industry:    'Software & Internal Tools',
-    location:    'Kerala, India',
-    services:    ['Software Development', 'Web Development'],
-    techStack:   ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'Tailwind CSS', 'Vercel'],
-    features:    [
+    slug: 'wayfarer-inventory',
+    name: 'Wayfarer Inventory',
+    tagline: 'Equipment rental and inventory management system with barcode scanning',
+    description:
+      'A custom internal software system built for Wayfarer Films to manage their production equipment inventory. Features barcode scanning, rental tracking, availability calendars and equipment condition logging.',
+    industry: 'Software & Internal Tools',
+    location: 'Kerala, India',
+    services: ['Software Development', 'Web Development'],
+    techStack: ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'Tailwind CSS', 'Vercel'],
+    features: [
       'Barcode scanning for equipment check-in/check-out',
       'Real-time inventory availability tracking',
       'Rental history and condition logging',
@@ -200,51 +108,43 @@ export const projects: Project[] = [
       'Dashboard with usage analytics',
       'Mobile-friendly for on-set use',
     ],
-    image:    '/projects/wayfarer-inventory.jpg',
+    image: '/projects/wayfarer-inventory.jpg',
     featured: true,
-    year:     '2025',
+    year: '2025',
   },
   {
-=======
-    featured: false,
-    year:     '2026',
-  },
-  {
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
-    slug:        'studio-panjabutha',
-    name:        'Studio Panjabutha',
-    tagline:     'Architectural & interior design portfolio with 3D visualization',
-    description: 'A premium portfolio website for an architectural and interior design studio. Features project galleries, 3D renders, and a refined minimal aesthetic matching the brand.',
-    industry:    'Architecture & Interior Design',
-    location:    'Kerala, India',
-    services:    ['Web Development', 'SEO'],
-    techStack:   ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel'],
-    features:    [
+    slug: 'studio-panjabutha',
+    name: 'Studio Panjabutha',
+    tagline: 'Architectural & interior design portfolio with 3D visualization',
+    description:
+      'A premium portfolio website for an architectural and interior design studio. Features project galleries, 3D renders, and a refined minimal aesthetic matching the brand.',
+    industry: 'Architecture & Interior Design',
+    location: 'Kerala, India',
+    services: ['Web Development', 'SEO'],
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel'],
+    features: [
       'Full-screen project gallery with lightbox',
       'Animated page transitions',
       '3D render showcases',
       'Services and process section',
       'Contact and consultation form',
     ],
-    image:    screenshot('https://panjabutha.vercel.app/'),
-    liveUrl:  'https://panjabutha.vercel.app/',
-<<<<<<< HEAD
-    featured: true,
-=======
+    image: screenshot('https://panjabutha.vercel.app/'),
+    liveUrl: 'https://panjabutha.vercel.app/',
     featured: false,
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
-    year:     '2025',
+    year: '2025',
   },
   {
-    slug:        'kerala-hair-transplant',
-    name:        'Kerala Hair Transplant',
-    tagline:     'Medical services website with blog, FAQ and SEO content system',
-    description: 'A conversion-focused medical website for a hair transplant clinic in Kerala. Includes a full blog CMS, FAQ schema, treatment pages and local SEO optimisation.',
-    industry:    'Healthcare & Medical',
-    location:    'Kerala, India',
-    services:    ['Web Development', 'SEO'],
-    techStack:   ['Next.js', 'TypeScript', 'Tailwind CSS', 'MDX', 'Vercel'],
-    features:    [
+    slug: 'kerala-hair-transplant',
+    name: 'Kerala Hair Transplant',
+    tagline: 'Medical services website with blog, FAQ and SEO content system',
+    description:
+      'A conversion-focused medical website for a hair transplant clinic in Kerala. Includes a full blog CMS, FAQ schema, treatment pages and local SEO optimisation.',
+    industry: 'Healthcare & Medical',
+    location: 'Kerala, India',
+    services: ['Web Development', 'SEO'],
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'MDX', 'Vercel'],
+    features: [
       'Treatment and procedure landing pages',
       'MDX-powered blog with SEO schema',
       'FAQ section with structured data',
@@ -252,68 +152,43 @@ export const projects: Project[] = [
       'Local SEO for Kerala hair transplant keywords',
       'Before & after gallery',
     ],
-    image:    screenshot('https://hairtransplant-kohl.vercel.app/'),
-    liveUrl:  'https://hairtransplant-kohl.vercel.app/',
-<<<<<<< HEAD
-    featured: true,
-=======
+    image: screenshot('https://hairtransplant-kohl.vercel.app/'),
+    liveUrl: 'https://hairtransplant-kohl.vercel.app/',
     featured: false,
-    year:     '2025',
+    year: '2025',
   },
   {
-    slug:        'smartauto-uae',
-    name:        'Smart Auto UAE',
-    tagline:     'Automotive services platform for UAE market',
-    description: 'A modern automotive services website targeting Dubai and UAE customers. Features service listings, booking enquiry forms, and a strong local SEO foundation.',
-    industry:    'Automotive',
-    location:    'Dubai, UAE',
-    services:    ['Web Development', 'SEO', 'Paid Advertising'],
-    techStack:   ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-    features:    [
-      'Service catalogue with detailed pages',
-      'Booking and enquiry form',
-      'Google Maps integration',
-      'UAE-focused local SEO',
-      'Google Ads landing pages',
-    ],
-    image:    screenshot('https://smartautouae.com/'),
-    liveUrl:  'https://smartautouae.com/',
-    featured: false,
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
-    year:     '2025',
-  },
-  
-  {
-<<<<<<< HEAD
-    slug:        'tshirt-customization',
-    name:        'T-Shirt Customization Studio',
-    tagline:     '3D product mockup designer with real-time texture mapping',
-    description: 'An interactive e-commerce experience where customers design their own t-shirts with real-time 3D preview, texture uploads and custom text placement before ordering.',
-    industry:    'E-Commerce & Fashion',
-    location:    'India',
-    services:    ['Web Development', 'Software Development'],
-    techStack:   ['Next.js', 'TypeScript', 'Three.js', 'GLTF', 'Tailwind CSS', 'Vercel'],
-    features:    [
+    slug: 'tshirt-customization',
+    name: 'T-Shirt Customization Studio',
+    tagline: '3D product mockup designer with real-time texture mapping',
+    description:
+      'An interactive e-commerce experience where customers design their own t-shirts with real-time 3D preview, texture uploads and custom text placement before ordering.',
+    industry: 'E-Commerce & Fashion',
+    location: 'India',
+    services: ['Web Development', 'Software Development'],
+    techStack: ['Next.js', 'TypeScript', 'Three.js', 'GLTF', 'Tailwind CSS', 'Vercel'],
+    features: [
       'Real-time 3D t-shirt preview with Three.js',
       'Custom image & text placement on model',
       'GLTF model with dynamic texture mapping',
       'Color picker and size selector',
       'Add to cart and checkout flow',
     ],
-    image:    '/projects/tshirt-customization.jpg',
+    image: '/projects/tshirt-customization.jpg',
     featured: false,
-    year:     '2025',
+    year: '2025',
   },
   {
-    slug:        'future-homes',
-    name:        'Future Homes',
-    tagline:     'Real estate property listing and rental platform',
-    description: 'A full-featured real estate platform for property listings, rentals and sales in Kerala and UAE. Includes advanced search filters, property detail pages and agent contact flows.',
-    industry:    'Real Estate',
-    location:    'Kerala, India & UAE',
-    services:    ['Web Development', 'SEO'],
-    techStack:   ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'Tailwind CSS', 'Vercel'],
-    features:    [
+    slug: 'future-homes',
+    name: 'Future Homes',
+    tagline: 'Real estate property listing and rental platform',
+    description:
+      'A full-featured real estate platform for property listings, rentals and sales in Kerala and UAE. Includes advanced search filters, property detail pages and agent contact flows.',
+    industry: 'Real Estate',
+    location: 'Kerala, India & UAE',
+    services: ['Web Development', 'SEO'],
+    techStack: ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'Tailwind CSS', 'Vercel'],
+    features: [
       'Property listing with advanced search filters',
       'Buy, rent and commercial categories',
       'Property detail pages with image galleries',
@@ -321,29 +196,8 @@ export const projects: Project[] = [
       'Supabase backend with row-level security',
       'SEO-optimised listing pages',
     ],
-    image:    '/projects/future-homes.jpg',
+    image: '/projects/future-homes.jpg',
     featured: false,
-=======
-    slug:        'chauffeur-dubai',
-    name:        'Chauffeur Dubai',
-    tagline:     'Premium chauffeur and luxury car hire platform for Dubai',
-    description: 'A luxury chauffeur and car hire booking website targeting high-net-worth individuals in Dubai. Features fleet showcase, service packages, airport transfers and instant WhatsApp booking.',
-    industry:    'Luxury Transport',
-    location:    'Dubai, UAE',
-    services:    ['Web Development', 'SEO', 'Paid Advertising'],
-    techStack:   ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-    features:    [
-      'Fleet showcase with vehicle detail pages',
-      'Service pages: airport transfer, hourly hire, events',
-      'Instant WhatsApp booking CTA',
-      'Dubai luxury transport SEO',
-      'Google Ads conversion landing pages',
-      'Mobile-first design for on-the-go bookings',
-    ],
-    image:    screenshot('https://chauffeurdubai.ae/'),
-    liveUrl:  'https://chauffeurdubai.ae/',
-    featured: true,
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
-    year:     '2025',
+    year: '2025',
   },
 ]

@@ -2,11 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-<<<<<<< HEAD
 import { ChevronDown, Code, Search, TrendingUp, Share2, Menu, X, ArrowUpRight, Cpu, ShieldCheck, Layers3, ScanSearch } from 'lucide-react'
-=======
-import { ChevronDown, Code, Search, TrendingUp, Share2, Menu, X, ArrowUpRight, Cpu } from 'lucide-react'
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
 
 interface NavigationProps {
   currentPage?: string
@@ -14,7 +10,6 @@ interface NavigationProps {
 
 export default function Navigation({ currentPage }: NavigationProps) {
   const [isServicesOpen, setIsServicesOpen] = useState(false)
-<<<<<<< HEAD
   const [isSeoToolsOpen, setIsSeoToolsOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
@@ -29,73 +24,37 @@ export default function Navigation({ currentPage }: NavigationProps) {
   ]
 
   const seoTools = [
-    { title: 'Meta Tag Checker', description: 'Audit title, description, OG & Twitter tags', icon: <ScanSearch className="w-4 h-4" />, href: '/seo-tools/meta-checker', no: '01' },
-    { title: 'SEO Audit Tool', description: 'Check technical SEO issues and quick wins', icon: <ShieldCheck className="w-4 h-4" />, href: '/seo-tools/seo-audit', no: '02' },
-    { title: 'Schema Checker', description: 'Validate structured data markup', icon: <Layers3 className="w-4 h-4" />, href: '/seo-tools/schema-checker', no: '03' },
+    { title: 'Open Graph Checker', description: 'Audit title, description, OG & Twitter tags', icon: <ScanSearch className="w-4 h-4" />, href: '/seo-tools/open-graph-checker', no: '01' },
+    { title: 'Title Tag Checker', description: 'Check On page SEO issues and quick wins', icon: <ShieldCheck className="w-4 h-4" />, href: '/seo-tools/title-tag-checker ', no: '02' },
+    { title: 'Meta Description Checker', description: 'Check Meta Descriptions', icon: <Layers3 className="w-4 h-4" />, href: '/seo-tools/meta-description-checker', no: '03' },
   ]
 
   const isServicePage = (currentPage ?? '').startsWith('services') || currentPage === 'services'
   const isSeoToolsPage = (currentPage ?? '').startsWith('seo-tools') || currentPage === 'seo-tools'
-=======
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
-
-  const services = [
-    { title: 'SEO Services',            description: 'Rank #1 on Google in Dubai & Kochi',      icon: <Search className="w-4 h-4" />,     href: '/services/seo',                      no: '01' },
-    { title: 'Web Development',         description: 'Custom websites & web applications',       icon: <Code className="w-4 h-4" />,       href: '/services/web-development',          no: '02' },
-    { title: 'Paid Advertising',        description: 'Google Ads, Meta & LinkedIn campaigns',    icon: <TrendingUp className="w-4 h-4" />, href: '/services/paid-advertising',         no: '03' },
-    { title: 'Social Media Management', description: 'Instagram, Facebook, TikTok & LinkedIn',  icon: <Share2 className="w-4 h-4" />,     href: '/services/social-media-management',  no: '04' },
-    { title: 'Software Development',    description: 'Mobile apps, SaaS & automation tools',    icon: <Cpu className="w-4 h-4" />,        href: '/services/software-development',     no: '05' },
-  ]
-
-  const isServicePage = (currentPage ?? '').startsWith('services') || currentPage === 'services'
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false)
     setIsMobileServicesOpen(false)
-<<<<<<< HEAD
     setIsMobileSeoToolsOpen(false)
-=======
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
   }
 
   return (
     <>
-<<<<<<< HEAD
       <nav className="hidden md:flex items-center gap-1">
-=======
-      {/* DESKTOP NAV */}
-      <nav className="hidden md:flex items-center gap-1">
-
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
         <Link href="/" className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${currentPage === 'home' ? 'text-neutral-900 bg-neutral-100' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50'}`}>
           Home
         </Link>
 
-<<<<<<< HEAD
-=======
-        {/* Services Dropdown */}
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
         <div className="relative" onMouseEnter={() => setIsServicesOpen(true)} onMouseLeave={() => setIsServicesOpen(false)}>
           <button className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${isServicePage ? 'text-neutral-900 bg-neutral-100' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50'}`}>
             Services
             <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
           </button>
-<<<<<<< HEAD
           <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-80 bg-white border border-neutral-100 rounded-2xl shadow-xl shadow-neutral-100/80 transition-all duration-200 ${isServicesOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
             <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-l border-t border-neutral-100 rotate-45" />
             <div className="p-3">
               {services.map((service) => (
                 <Link key={service.no} href={service.href} className="flex items-center gap-3 p-3 rounded-xl hover:bg-neutral-50 transition-colors group">
-=======
-
-          <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-80 bg-white border border-neutral-100 rounded-2xl shadow-xl shadow-neutral-100/80 transition-all duration-200 ${isServicesOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
-            <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-l border-t border-neutral-100 rotate-45" />
-            <div className="p-3">
-              {services.map((service, index) => (
-                <Link key={index} href={service.href} className="flex items-center gap-3 p-3 rounded-xl hover:bg-neutral-50 transition-colors group">
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
                   <div className="w-8 h-8 rounded-full border border-neutral-100 flex items-center justify-center text-neutral-400 group-hover:border-neutral-300 transition-colors flex-shrink-0">
                     {service.icon}
                   </div>
@@ -123,12 +82,7 @@ export default function Navigation({ currentPage }: NavigationProps) {
           </div>
         </div>
 
-<<<<<<< HEAD
         <div className="relative" onMouseEnter={() => setIsSeoToolsOpen(true)} onMouseLeave={() => setIsSeoToolsOpen(false)}>
-          <button className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${isSeoToolsPage ? 'text-neutral-900 bg-neutral-100' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50'}`}>
-            SEO Tools
-            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isSeoToolsOpen ? 'rotate-180' : ''}`} />
-          </button>
           <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-80 bg-white border border-neutral-100 rounded-2xl shadow-xl shadow-neutral-100/80 transition-all duration-200 ${isSeoToolsOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
             <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-l border-t border-neutral-100 rotate-45" />
             <div className="p-3">
@@ -170,61 +124,25 @@ export default function Navigation({ currentPage }: NavigationProps) {
         <Link href="/blog" className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${currentPage === 'blog' ? 'text-neutral-900 bg-neutral-100' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50'}`}>
           Blog
         </Link>
-        <Link href="/seo-tools" className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${isSeoToolsPage ? 'text-neutral-900 bg-neutral-100' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50'}`}>
-          SEO Tool
-        </Link>
         <Link href="/contact" className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${currentPage === 'contact' ? 'text-neutral-900 bg-neutral-100' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50'}`}>
           Contact
         </Link>
-=======
-        <Link href="/projects" className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${currentPage === 'projects' ? 'text-neutral-900 bg-neutral-100' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50'}`}>
-          Projects
-        </Link>
-
-        <Link href="/case-studies" className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${currentPage === 'case-studies' ? 'text-neutral-900 bg-neutral-100' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50'}`}>
-          Case Studies
-        </Link>
-
-        <Link href="/blog" className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${currentPage === 'blog' ? 'text-neutral-900 bg-neutral-100' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50'}`}>
-          Blog
-        </Link>
-
-        <Link href="/contact" className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${currentPage === 'contact' ? 'text-neutral-900 bg-neutral-100' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50'}`}>
-          Contact
-        </Link>
-
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
         <Link href="/contact" className="ml-2 inline-flex items-center gap-1.5 bg-neutral-900 text-white text-sm font-medium px-4 py-1.5 rounded-full hover:bg-neutral-700 transition-colors">
           Get a Quote
           <ArrowUpRight className="w-3.5 h-3.5" />
         </Link>
       </nav>
 
-<<<<<<< HEAD
-=======
-      {/* MOBILE HAMBURGER */}
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
       <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden w-9 h-9 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-600 hover:border-neutral-400 transition-colors" aria-label="Toggle menu">
         {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
       </button>
 
-<<<<<<< HEAD
       <div className={`md:hidden absolute top-full left-0 right-0 bg-white border-b border-neutral-100 shadow-xl shadow-neutral-100/50 transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-[900px] opacity-100' : 'max-h-0 opacity-0'}`}>
         <div className="px-5 py-6 space-y-1">
-=======
-      {/* MOBILE MENU */}
-      <div className={`md:hidden absolute top-full left-0 right-0 bg-white border-b border-neutral-100 shadow-xl shadow-neutral-100/50 transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
-        <div className="px-5 py-6 space-y-1">
-
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
           <Link href="/" onClick={closeMobileMenu} className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${currentPage === 'home' ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'}`}>
             Home
           </Link>
 
-<<<<<<< HEAD
-=======
-          {/* Mobile Services Accordion */}
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
           <div>
             <button onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)} className={`flex items-center justify-between w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${isServicePage ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'}`}>
               Services
@@ -232,13 +150,8 @@ export default function Navigation({ currentPage }: NavigationProps) {
             </button>
             <div className={`overflow-hidden transition-all duration-300 ${isMobileServicesOpen ? 'max-h-96 mt-1' : 'max-h-0'}`}>
               <div className="pl-3 space-y-0.5 border-l border-neutral-100 ml-3">
-<<<<<<< HEAD
                 {services.map((service) => (
                   <Link key={service.no} href={service.href} onClick={closeMobileMenu} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-neutral-50 transition-colors group">
-=======
-                {services.map((service, index) => (
-                  <Link key={index} href={service.href} onClick={closeMobileMenu} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-neutral-50 transition-colors group">
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
                     <div className="w-7 h-7 rounded-full border border-neutral-100 flex items-center justify-center text-neutral-400 flex-shrink-0">{service.icon}</div>
                     <div>
                       <p className="text-sm font-medium text-neutral-900">{service.title}</p>
@@ -253,7 +166,6 @@ export default function Navigation({ currentPage }: NavigationProps) {
             </div>
           </div>
 
-<<<<<<< HEAD
           <div>
             <button onClick={() => setIsMobileSeoToolsOpen(!isMobileSeoToolsOpen)} className={`flex items-center justify-between w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${isSeoToolsPage ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'}`}>
               SEO Tools
@@ -286,31 +198,10 @@ export default function Navigation({ currentPage }: NavigationProps) {
           <Link href="/blog" onClick={closeMobileMenu} className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${currentPage === 'blog' ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'}`}>
             Blog
           </Link>
-          <Link href="/seo-tools" onClick={closeMobileMenu} className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${isSeoToolsPage ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'}`}>
-            SEO Tool
-          </Link>
-=======
-          <Link href="/projects" onClick={closeMobileMenu} className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${currentPage === 'projects' ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'}`}>
-            Projects
-          </Link>
-
-          <Link href="/case-studies" onClick={closeMobileMenu} className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${currentPage === 'case-studies' ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'}`}>
-            Case Studies
-          </Link>
-
-          <Link href="/blog" onClick={closeMobileMenu} className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${currentPage === 'blog' ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'}`}>
-            Blog
-          </Link>
-
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
           <Link href="/contact" onClick={closeMobileMenu} className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${currentPage === 'contact' ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'}`}>
             Contact
           </Link>
 
-<<<<<<< HEAD
-=======
-          {/* Mobile CTA */}
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
           <div className="pt-3 border-t border-neutral-100">
             <Link href="/contact" onClick={closeMobileMenu} className="flex items-center justify-center gap-2 w-full bg-neutral-900 text-white text-sm font-semibold px-5 py-3 rounded-full hover:bg-neutral-700 transition-colors">
               Get a Quote
@@ -322,16 +213,8 @@ export default function Navigation({ currentPage }: NavigationProps) {
               ))}
             </div>
           </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
         </div>
       </div>
     </>
   )
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
