@@ -29,10 +29,7 @@
     "@uiw/react-md-editor": "^4.0.11",
     "bcryptjs": "^3.0.3",
     "browser-image-compression": "^2.0.2",
-<<<<<<< HEAD
     "cheerio": "^1.2.0",
-=======
->>>>>>> 0a3e213644fd2188dca9293836780d225b9d8bb4
     "date-fns": "^4.1.0",
     "framer-motion": "^12.23.22",
     "gray-matter": "^4.0.3",
